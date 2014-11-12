@@ -9,10 +9,6 @@ public class Utilities {
 	public static final String LINE_SEPARATOR = System
 			.getProperty("line.separator");
 
-	public static void getCSV() {
-
-	}
-
 	public static String toString(List<Node> lNodes) {
 		String stringOut = "";
 		int i = 0;

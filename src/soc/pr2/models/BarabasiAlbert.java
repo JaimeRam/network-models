@@ -28,14 +28,12 @@ public class BarabasiAlbert {
 		for (long i = 0; i < m; i++)
 			listNodes.add(new Node());
 
-		for (Node masterNode : listNodes) {
-
-			for (Node neighboringNode : listNodes) {
-
-				if (masterNode.equals(neighboringNode))
-					continue;
-
+		for (int i = 0; i < listNodes.size(); i++) {
+			Node masterNode = listNodes.get(i);
+			for (int j = i + 1; j < listNodes.size(); j++) {
+				Node neighboringNode = listNodes.get(j);
 				masterNode.addAdjacentNode(neighboringNode);
+				neighboringNode.addAdjacentNode(masterNode);
 				masterNode.increaseDegree();
 				neighboringNode.increaseDegree();
 				TOTAL_DEGREE += 2;
@@ -51,8 +49,7 @@ public class BarabasiAlbert {
 
 			while (addedEdge < this.m) {
 
-				for (int j = i + 1; j < listNodes.size(); j++) {
-					Node neighboringNode = listNodes.get(j);
+				for (Node neighboringNode : listNodes) {
 
 					if (newNode.contains(neighboringNode))
 						continue;
@@ -75,6 +72,7 @@ public class BarabasiAlbert {
 			listNodes.add(newNode);
 			addedEdge = 0;
 		}
+		Node.ID_COUNT = 0; // Reiniciamos el contador de nodos para las siguientes ejecuciones
 	}
 
 	public String toString() {

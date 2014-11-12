@@ -44,6 +44,7 @@ public class ErdosRenyi {
 				}
 			}
 		}
+		Node.ID_COUNT = 0; // Reiniciamos el contador de nodos para las siguientes ejecuciones
 	}
 
 	public String toString() {
