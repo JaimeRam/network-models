@@ -51,10 +51,8 @@ public class BarabasiAlbert {
 
 			while (addedEdge < this.m) {
 
-				for (Node neighboringNode : listNodes) {
-
-					if (this.m == addedEdge)
-						break;
+				for (int j = i + 1; j < listNodes.size(); j++) {
+					Node neighboringNode = listNodes.get(j);
 
 					if (newNode.contains(neighboringNode))
 						continue;

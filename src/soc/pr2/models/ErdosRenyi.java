@@ -28,11 +28,11 @@ public class ErdosRenyi {
 	}
 
 	public void generate() {
-		for (Node masterNode : listNodes) {
-			for (Node neighboringNode : listNodes) {
+		for (int i = 0; i < listNodes.size(); i++) {
+			Node masterNode = listNodes.get(i);
+			for (int j = i + 1; j < listNodes.size(); j++) {
 
-				if (masterNode.equals(neighboringNode))
-					continue;
+				Node neighboringNode = listNodes.get(j);
 
 				Random number = new Random();
 				float probability = number.nextFloat();
