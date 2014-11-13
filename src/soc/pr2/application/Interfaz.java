@@ -66,13 +66,16 @@ public class Interfaz extends JFrame {
 		panel_3.setBackground(Color.BLACK);
 		panel.add(panel_3);
 
-		final JButton btnexportar = new JButton(new ImageIcon("res/play.png"));
+		final JButton btnexportar = new JButton(new ImageIcon(getClass()
+				.getResource("/soc/pr2/media/play.png")));
 		panel_3.add(btnexportar);
 
-		final JButton btnresetear = new JButton(new ImageIcon("res/off.png"));
+		final JButton btnresetear = new JButton(new ImageIcon(getClass()
+				.getResource("/soc/pr2/media/off.png")));
 		panel_3.add(btnresetear);
 
-		final JButton btnenlazar = new JButton(new ImageIcon("res/firefox.png"));
+		final JButton btnenlazar = new JButton(new ImageIcon(getClass()
+				.getResource("/soc/pr2/media/firefox.png")));
 		panel_3.add(btnenlazar);
 
 		// Acciones Botones superiores
@@ -81,7 +84,8 @@ public class Interfaz extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(btnexportar,
+				JOptionPane.showMessageDialog(
+						btnexportar,
 						"Información a cerca de la aplicación\n" + "\n"
 								+ "¿Qué podemos realizar con la aplicación?\n"
 								+ "\n" + "Paneles de la Aplicación\n" + "\n"
@@ -90,8 +94,10 @@ public class Interfaz extends JFrame {
 								+ "Panel Modelo Barabasi:\n" + "\n"
 								+ "Panel Información del sistema:\n" + "\n"
 								+ "Panel de último estado\n",
-						"Generador De Redes", JOptionPane.OK_CANCEL_OPTION,
-						new ImageIcon("res/captura.png"));
+						"Generador De Redes",
+						JOptionPane.OK_CANCEL_OPTION,
+						new ImageIcon(getClass().getResource(
+								"/soc/pr2/media/captura.png")));
 
 			}
 		});
@@ -103,8 +109,8 @@ public class Interfaz extends JFrame {
 
 				if (JOptionPane.showConfirmDialog(btnresetear,
 						"¿Desea cerrar la aplicación?", "Cierre rápido", 0,
-						JOptionPane.QUESTION_MESSAGE, new ImageIcon(
-								"res/off.png")) == 0)
+						JOptionPane.QUESTION_MESSAGE, new ImageIcon(getClass()
+								.getResource("/soc/pr2/media/off.png"))) == 0)
 					System.exit(0);
 			}
 		});
@@ -113,10 +119,16 @@ public class Interfaz extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object seleccion = JOptionPane.showInputDialog(btnenlazar,
-						"Seleccione opcion", "Selector de opciones",
-						JOptionPane.QUESTION_MESSAGE, new ImageIcon(
-								"res/firefox.png"), // null para icono defecto
+				JOptionPane.showInputDialog(
+						btnenlazar,
+						"Seleccione opcion",
+						"Selector de opciones",
+						JOptionPane.QUESTION_MESSAGE,
+						new ImageIcon(getClass().getResource(
+								"/soc/pr2/media/firefox.png")), // null
+																// para
+																// icono
+																// defecto
 						new Object[] { "www.github.com", "www.gephi.com",
 								"www.otroejemplo.com" }, "opcion 1");
 			}
@@ -180,12 +192,13 @@ public class Interfaz extends JFrame {
 		panel_4.add(panel_6, BorderLayout.SOUTH);
 		panel_6.setLayout(new GridLayout(1, 2, 0, 0));
 
-		final JButton btninfoal = new JButton(
-				new ImageIcon("res/info_icon.png"));
+		final JButton btninfoal = new JButton(new ImageIcon(getClass()
+				.getResource("/soc/pr2/media/info_icon.png")));
 
 		panel_6.add(btninfoal);
 
-		JButton btndoneal = new JButton(new ImageIcon("res/int.png"));
+		JButton btndoneal = new JButton(new ImageIcon(getClass().getResource(
+				"/soc/pr2/media/int.png")));
 
 		panel_6.add(btndoneal);
 
@@ -203,8 +216,8 @@ public class Interfaz extends JFrame {
 						+ "* Como funciona el panel:\n" + "\n"
 						+ "bla bla bla bla bla bla bla bla bla bla bla bla\n"
 						+ "\n\n", "Modelo Barabasi",
-						JOptionPane.OK_CANCEL_OPTION, new ImageIcon(
-								"res/Erdos.png"));
+						JOptionPane.OK_CANCEL_OPTION, new ImageIcon(getClass()
+								.getResource("/soc/pr2/media/Erdos.png")));
 
 			}
 		});
@@ -260,36 +273,47 @@ public class Interfaz extends JFrame {
 		panel_5.add(panel_14, BorderLayout.SOUTH);
 		panel_14.setLayout(new GridLayout(0, 2, 0, 0));
 
-		final JButton btninfobar = new JButton(new ImageIcon(
-				"res/info_icon.png"));
+		final JButton btninfobar = new JButton(new ImageIcon(getClass()
+				.getResource("/soc/pr2/media/info_icon.png")));
 
 		panel_14.add(btninfobar);
 
-		JButton btndonebar = new JButton(new ImageIcon("res/int.png"));
+		JButton btndonebar = new JButton(new ImageIcon(getClass().getResource(
+				"/soc/pr2/media/int.png")));
 
 		panel_14.add(btndonebar);
 
 		// Accciones botones Panel Barabasi
 
-		UIManager UI = new UIManager();
-		UI.put("OptionPane.background", Color.WHITE);
-		UI.put("Panel.background", Color.WHITE);
-		UI.put("OptionPane.messageForeground", Color.black);
+		UIManager.put("OptionPane.background", Color.WHITE);
+		UIManager.put("Panel.background", Color.WHITE);
+		UIManager.put("OptionPane.messageForeground", Color.black);
 
 		btninfobar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(btninfobar, "* Modelo:\n" + "\n"
-						+ "El modelo Barabasi consiste en.... p\n" + "\n"
-						+ "* Parámetros:\n" + "\n"
-						+ "N:Número de nodos iniciales" + "\n"
-						+ "t: nodos a insertar\n" + "\n"
-						+ "* Como funciona el panel:\n" + "\n"
-						+ "bla bla bla bla bla bla bla bla bla bla bla bla\n"
-						+ "\n\n", "Modelo Barabasi",
-						JOptionPane.OK_CANCEL_OPTION, new ImageIcon(
-								"res/Barabasi_Albert.png"));
+				JOptionPane
+						.showMessageDialog(
+								btninfobar,
+								"* Modelo:\n"
+										+ "\n"
+										+ "El modelo Barabasi consiste en.... p\n"
+										+ "\n"
+										+ "* Parámetros:\n"
+										+ "\n"
+										+ "N:Número de nodos iniciales"
+										+ "\n"
+										+ "t: nodos a insertar\n"
+										+ "\n"
+										+ "* Como funciona el panel:\n"
+										+ "\n"
+										+ "bla bla bla bla bla bla bla bla bla bla bla bla\n"
+										+ "\n\n",
+								"Modelo Barabasi",
+								JOptionPane.OK_CANCEL_OPTION,
+								new ImageIcon(getClass().getResource(
+										"/soc/pr2/media/Barabasi_Albert.png")));
 
 			}
 		});
@@ -344,8 +368,9 @@ public class Interfaz extends JFrame {
 										+ " Alejandro Pequeño Pulleiro\n"
 										+ " Roberto García Sánchez\n" + "\n\n",
 								"Licencia Aplicación",
-								JOptionPane.OK_CANCEL_OPTION, new ImageIcon(
-										"res/GPLv3.png"));
+								JOptionPane.OK_CANCEL_OPTION,
+								new ImageIcon(getClass().getResource(
+										"/soc/pr2/media/GPLv3.png")));
 
 			}
 
@@ -357,11 +382,13 @@ public class Interfaz extends JFrame {
 
 				if (textField.getText().trim().length() == 0
 						|| textField_1.getText().trim().length() == 0)
-					JOptionPane.showMessageDialog(null,
+					JOptionPane.showMessageDialog(
+							null,
 							"Debes introducir valores en ambos campos",
 							"Mensaje Informativo",
-							JOptionPane.OK_CANCEL_OPTION, new ImageIcon(
-									"res/warning.gif"));
+							JOptionPane.OK_CANCEL_OPTION,
+							new ImageIcon(getClass().getResource(
+									"/soc/pr2/media/warning.gif")));
 				else {
 					long nodosAl = (long) Long.parseLong(textField.getText());
 					float probabilidad = (float) Float.parseFloat(textField_1
@@ -370,20 +397,24 @@ public class Interfaz extends JFrame {
 					if (nodosAl < 2) {
 						textArea.setText("Número de nodos introducido no válido: ["
 								+ nodosAl + "] Debe de ser mayor que 2");
-						JOptionPane.showMessageDialog(null,
+						JOptionPane.showMessageDialog(
+								null,
 								"Número de nodos introducido no válido",
 								"Mensaje Informativo",
-								JOptionPane.OK_CANCEL_OPTION, new ImageIcon(
-										"res/warning.gif"));
+								JOptionPane.OK_CANCEL_OPTION,
+								new ImageIcon(getClass().getResource(
+										"/soc/pr2/media/warning.gif")));
 					} else if (probabilidad < 0 || probabilidad > 1) {
 						textArea.setText("Probabilidad introducida no válida: ["
 								+ probabilidad
 								+ "] Debe de ser un valor entre 0 y 1");
-						JOptionPane.showMessageDialog(null,
+						JOptionPane.showMessageDialog(
+								null,
 								"Probabilidad introducida no válida",
 								"Mensaje Informativo",
-								JOptionPane.OK_CANCEL_OPTION, new ImageIcon(
-										"res/warning.gif"));
+								JOptionPane.OK_CANCEL_OPTION,
+								new ImageIcon(getClass().getResource(
+										"/soc/pr2/media/warning.gif")));
 					} else {
 						textArea.setText("Generando red mediante modelo aleatorio según los datos introducidos...");
 						ErdosRenyi aleatoryModel = new ErdosRenyi(nodosAl,
@@ -405,11 +436,13 @@ public class Interfaz extends JFrame {
 
 				if (textField_2.getText().trim().length() == 0
 						|| textField_3.getText().trim().length() == 0)
-					JOptionPane.showMessageDialog(null,
+					JOptionPane.showMessageDialog(
+							null,
 							"Debes introducir valores en ambos campos",
 							"Mensaje Informativo",
-							JOptionPane.OK_CANCEL_OPTION, new ImageIcon(
-									"res/warning.gif"));
+							JOptionPane.OK_CANCEL_OPTION,
+							new ImageIcon(getClass().getResource(
+									"/soc/pr2/media/warning.gif")));
 				else {
 					long nodosIniBar = (long) Long.parseLong(textField_2
 							.getText());
@@ -418,21 +451,25 @@ public class Interfaz extends JFrame {
 					if (nodosIniBar < 2) {
 						textArea.setText("Número de nodos iniciales introducido no válido: ["
 								+ nodosIniBar + "] Debe de ser mayor que 2");
-						JOptionPane.showMessageDialog(null,
+						JOptionPane.showMessageDialog(
+								null,
 								"Número de nodos iniciales no válido.",
 								"Mensaje Informativo",
-								JOptionPane.OK_CANCEL_OPTION, new ImageIcon(
-										"res/warning.gif"));
+								JOptionPane.OK_CANCEL_OPTION,
+								new ImageIcon(getClass().getResource(
+										"/soc/pr2/media/warning.gif")));
 					}
 
 					else if (nodosNuevBar < 0) {
 						textArea.setText("Número de nodos nuevos a introducir no válido: ["
 								+ nodosNuevBar + "] Debe de ser positivo o 0");
-						JOptionPane.showMessageDialog(null,
+						JOptionPane.showMessageDialog(
+								null,
 								"Número de nodos a insertar no válido.",
 								"Mensaje Informativo",
-								JOptionPane.OK_CANCEL_OPTION, new ImageIcon(
-										"res/warning.gif"));
+								JOptionPane.OK_CANCEL_OPTION,
+								new ImageIcon(getClass().getResource(
+										"/soc/pr2/media/warning.gif")));
 					} else {
 						textArea.setText("Generando red mediante modelo Barabasi");
 						BarabasiAlbert barabasiModel = new BarabasiAlbert(
