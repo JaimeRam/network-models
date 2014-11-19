@@ -7,10 +7,10 @@ import java.util.Random;
 import soc.pr2.application.Utilities;
 import soc.pr2.data.Node;
 
-public class BarabasiAlbert {
+public class BarabasiAlbert implements Runnable {
 
 	private long m;
-	private int t;
+	private long t;
 	private List<Node> listNodes;
 	public static double PROBABILITY = 0;
 	public static long TOTAL_DEGREE = 0;
@@ -21,6 +21,10 @@ public class BarabasiAlbert {
 		this.t = t;
 		listNodes = new ArrayList<Node>();
 		initialize();
+	}
+
+	public void run() {
+		generate();
 	}
 
 	private void initialize() {
@@ -41,7 +45,7 @@ public class BarabasiAlbert {
 		}
 	}
 
-	public void generate() {
+	private void generate() {
 
 		for (int i = 0; i < t; i++) {
 			long addedEdge = 0;
@@ -64,18 +68,24 @@ public class BarabasiAlbert {
 						newNode.increaseDegree();
 						neighboringNode.increaseDegree();
 
-						TOTAL_DEGREE += 2;
 						addedEdge++;
+						if (addedEdge == this.m)
+							break;
 					}
 				}
+				TOTAL_DEGREE += m * 2;
 			}
 			listNodes.add(newNode);
 			addedEdge = 0;
+			float progress = (((float) i + 1) / (float) t) * 100;
+			System.out.println(progress + "% completado");
 		}
-		Node.ID_COUNT = 0; // Reiniciamos el contador de nodos para las siguientes ejecuciones
+		Utilities.exportCSV(listNodes);
+		Node.ID_COUNT = 0; // Reiniciamos el contador de nodos para las
+							// siguientes ejecuciones
 	}
 
-	public String toString() {
-		return Utilities.toString(listNodes);
+	public List<Node> getListNodes() {
+		return listNodes;
 	}
 }

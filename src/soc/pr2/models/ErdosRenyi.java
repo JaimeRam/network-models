@@ -7,7 +7,7 @@ import java.util.Random;
 import soc.pr2.application.Utilities;
 import soc.pr2.data.Node;
 
-public class ErdosRenyi {
+public class ErdosRenyi implements Runnable {
 
 	private long N;
 	private float p;
@@ -27,8 +27,12 @@ public class ErdosRenyi {
 			listNodes.add(new Node());
 	}
 
-	public void generate() {
-		for (int i = 0; i < listNodes.size(); i++) {
+	public void run() {
+		generate();
+	}
+
+	private void generate() {
+		for (int i = 0; i < N; i++) {
 			Node masterNode = listNodes.get(i);
 			for (int j = i + 1; j < listNodes.size(); j++) {
 
@@ -37,17 +41,18 @@ public class ErdosRenyi {
 				Random number = new Random();
 				float probability = number.nextFloat();
 
-				if (probability <= p) {
+				if (probability <= p)
 					masterNode.addAdjacentNode(neighboringNode);
-					masterNode.increaseDegree();
-					neighboringNode.increaseDegree();
-				}
 			}
+			float progress = (((float) i + 1) / (float) N) * 100;
+			System.out.println(progress + "% completado");
 		}
-		Node.ID_COUNT = 0; // Reiniciamos el contador de nodos para las siguientes ejecuciones
+		Utilities.exportCSV(listNodes);
+		Node.ID_COUNT = 0; // Reiniciamos el contador de nodos para las
+							// siguientes ejecuciones
 	}
 
-	public String toString() {
-		return Utilities.toString(listNodes);
+	public List<Node> getListNodes() {
+		return listNodes;
 	}
 }

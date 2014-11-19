@@ -8,7 +8,6 @@ import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -19,14 +18,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import soc.pr2.models.BarabasiAlbert;
 import soc.pr2.models.ErdosRenyi;
-import soc.pr2.output.Component;
-import soc.pr2.output.Export;
 
 public class Interfaz extends JFrame {
 
@@ -417,16 +415,13 @@ public class Interfaz extends JFrame {
 										"/soc/pr2/media/warning.gif")));
 					} else {
 						textArea.setText("Generando red mediante modelo aleatorio según los datos introducidos...");
-						ErdosRenyi aleatoryModel = new ErdosRenyi(nodosAl,
-								probabilidad);
-						aleatoryModel.generate();
+						SwingUtilities.invokeLater(new ErdosRenyi(nodosAl,
+								probabilidad));
 						lblModelo
 								.setText("  Último modelo utilizado: Aleatorio");
-						exportCSV(aleatoryModel.toString());
+
 					}
 				}
-
-				// System.out.println("nodos:"+nodosAl+"\n"+"Probabilidad:"+probabilidad);
 			}
 		});
 
@@ -472,13 +467,10 @@ public class Interfaz extends JFrame {
 										"/soc/pr2/media/warning.gif")));
 					} else {
 						textArea.setText("Generando red mediante modelo Barabasi");
-						BarabasiAlbert barabasiModel = new BarabasiAlbert(
-								nodosIniBar, nodosNuevBar);
-						barabasiModel.generate();
-
+						SwingUtilities.invokeLater(new BarabasiAlbert(
+								nodosIniBar, nodosNuevBar));
 						lblModelo
 								.setText("  Último modelo utilizado: Barabasi");
-						exportCSV(barabasiModel.toString());
 					}
 				}
 			}
@@ -487,19 +479,5 @@ public class Interfaz extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
-	}
-
-	private void exportCSV(String model) {
-		Component cmp = new Component();
-		String rute = cmp.generarSalida();
-		Export exp = new Export();
-
-		if (rute != null)
-			try {
-				exp.exportar(model, rute);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 	}
 }

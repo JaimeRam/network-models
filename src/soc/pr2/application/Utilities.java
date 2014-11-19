@@ -1,8 +1,11 @@
 package soc.pr2.application;
 
+import java.io.IOException;
 import java.util.List;
 
 import soc.pr2.data.Node;
+import soc.pr2.output.Component;
+import soc.pr2.output.Export;
 
 public class Utilities {
 
@@ -26,4 +29,19 @@ public class Utilities {
 
 		return stringOut;
 	}
+
+	public static void exportCSV(List<Node> lNodes) {
+		Component cmp = new Component();
+		String rute = cmp.generarSalida();
+		Export exp = new Export();
+
+		if (rute != null)
+			try {
+				exp.exportar(lNodes, rute);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+
 }
