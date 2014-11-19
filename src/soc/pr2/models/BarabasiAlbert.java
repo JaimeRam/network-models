@@ -4,27 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JTextArea;
+import javax.swing.SwingWorker;
+
 import soc.pr2.application.Utilities;
 import soc.pr2.data.Node;
 
-public class BarabasiAlbert implements Runnable {
+public class BarabasiAlbert extends SwingWorker<Void, Integer> {
 
 	private long m;
 	private long t;
 	private List<Node> listNodes;
+	private JTextArea statusLabel;
 	public static double PROBABILITY = 0;
 	public static long TOTAL_DEGREE = 0;
 
-	public BarabasiAlbert(long m, int t) {
+	public BarabasiAlbert(long m, int t, JTextArea statusLabel) {
 		super();
 		this.m = m;
 		this.t = t;
+		this.statusLabel = statusLabel;
 		listNodes = new ArrayList<Node>();
 		initialize();
-	}
-
-	public void run() {
-		generate();
 	}
 
 	private void initialize() {
@@ -45,7 +46,8 @@ public class BarabasiAlbert implements Runnable {
 		}
 	}
 
-	private void generate() {
+	@Override
+	protected Void doInBackground() throws Exception {
 
 		for (int i = 0; i < t; i++) {
 			long addedEdge = 0;
@@ -78,11 +80,17 @@ public class BarabasiAlbert implements Runnable {
 			listNodes.add(newNode);
 			addedEdge = 0;
 			float progress = (((float) i + 1) / (float) t) * 100;
-			System.out.println(progress + "% completado");
+			publish((int) progress);
 		}
 		Utilities.exportCSV(listNodes);
 		Node.ID_COUNT = 0; // Reiniciamos el contador de nodos para las
 							// siguientes ejecuciones
+		return null;
+	}
+
+	protected void process(List<Integer> chunks) {
+		statusLabel.setText(Integer.toString(chunks.get(chunks.size() - 1))
+				+ "% completado");
 	}
 
 	public List<Node> getListNodes() {

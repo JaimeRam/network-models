@@ -4,19 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JTextArea;
+import javax.swing.SwingWorker;
+
 import soc.pr2.application.Utilities;
 import soc.pr2.data.Node;
 
-public class ErdosRenyi implements Runnable {
+public class ErdosRenyi extends SwingWorker<Void, Integer> {
 
 	private long N;
 	private float p;
 	private List<Node> listNodes;
+	private JTextArea statusLabel;
 
-	public ErdosRenyi(long numberOfNodes, float probability) {
+	public ErdosRenyi(long numberOfNodes, float probability, JTextArea stl) {
 		super();
 		N = numberOfNodes;
 		p = probability;
+		statusLabel = stl;
 		initialize();
 	}
 
@@ -27,11 +32,12 @@ public class ErdosRenyi implements Runnable {
 			listNodes.add(new Node());
 	}
 
-	public void run() {
-		generate();
+	public List<Node> getListNodes() {
+		return listNodes;
 	}
 
-	private void generate() {
+	@Override
+	protected Void doInBackground() throws Exception {
 		for (int i = 0; i < N; i++) {
 			Node masterNode = listNodes.get(i);
 			for (int j = i + 1; j < listNodes.size(); j++) {
@@ -45,14 +51,16 @@ public class ErdosRenyi implements Runnable {
 					masterNode.addAdjacentNode(neighboringNode);
 			}
 			float progress = (((float) i + 1) / (float) N) * 100;
-			System.out.println(progress + "% completado");
+			publish((int) progress);
 		}
 		Utilities.exportCSV(listNodes);
 		Node.ID_COUNT = 0; // Reiniciamos el contador de nodos para las
 							// siguientes ejecuciones
+		return null;
 	}
 
-	public List<Node> getListNodes() {
-		return listNodes;
+	protected void process(List<Integer> chunks) {
+		statusLabel.setText(Integer.toString(chunks.get(chunks.size() - 1))
+				+ "% completado");
 	}
 }

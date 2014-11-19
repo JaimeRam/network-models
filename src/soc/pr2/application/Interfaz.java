@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -34,6 +33,7 @@ public class Interfaz extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextArea textArea;
 
 	/**
 	 * Create the frame.
@@ -322,7 +322,7 @@ public class Interfaz extends JFrame {
 		contentPane.add(panel_2, BorderLayout.SOUTH);
 		panel_2.setLayout(new GridLayout(2, 0, 0, 0));
 
-		final JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBorder(BorderFactory.createTitledBorder(null,
 				"Información Del Sistema", TitledBorder.LEFT, TitledBorder.TOP,
 				new Font("times new roman", Font.PLAIN, 19), Color.white));
@@ -415,8 +415,14 @@ public class Interfaz extends JFrame {
 										"/soc/pr2/media/warning.gif")));
 					} else {
 						textArea.setText("Generando red mediante modelo aleatorio según los datos introducidos...");
-						SwingUtilities.invokeLater(new ErdosRenyi(nodosAl,
-								probabilidad));
+						/*
+						 * SwingUtilities.invokeLater(new ErdosRenyi(nodosAl,
+						 * probabilidad, textArea));
+						 */
+
+						ErdosRenyi model = new ErdosRenyi(nodosAl,
+								probabilidad, textArea);
+						model.execute();
 						lblModelo
 								.setText("  Último modelo utilizado: Aleatorio");
 
@@ -467,8 +473,9 @@ public class Interfaz extends JFrame {
 										"/soc/pr2/media/warning.gif")));
 					} else {
 						textArea.setText("Generando red mediante modelo Barabasi");
-						SwingUtilities.invokeLater(new BarabasiAlbert(
-								nodosIniBar, nodosNuevBar));
+						BarabasiAlbert model = new BarabasiAlbert(nodosIniBar,
+								nodosNuevBar, textArea);
+						model.execute();
 						lblModelo
 								.setText("  Último modelo utilizado: Barabasi");
 					}
