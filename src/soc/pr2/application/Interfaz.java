@@ -34,6 +34,8 @@ public class Interfaz extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextArea textArea;
+	public static JButton btndoneal;
+	public static JButton btndonebar;
 
 	/**
 	 * Create the frame.
@@ -195,7 +197,7 @@ public class Interfaz extends JFrame {
 
 		panel_6.add(btninfoal);
 
-		JButton btndoneal = new JButton(new ImageIcon(getClass().getResource(
+		btndoneal = new JButton(new ImageIcon(getClass().getResource(
 				"/soc/pr2/media/int.png")));
 
 		panel_6.add(btndoneal);
@@ -276,7 +278,7 @@ public class Interfaz extends JFrame {
 
 		panel_14.add(btninfobar);
 
-		JButton btndonebar = new JButton(new ImageIcon(getClass().getResource(
+		btndonebar = new JButton(new ImageIcon(getClass().getResource(
 				"/soc/pr2/media/int.png")));
 
 		panel_14.add(btndonebar);
@@ -423,6 +425,7 @@ public class Interfaz extends JFrame {
 						ErdosRenyi model = new ErdosRenyi(nodosAl,
 								probabilidad, textArea);
 						model.execute();
+						setRunButton(false);
 						lblModelo
 								.setText("  Último modelo utilizado: Aleatorio");
 
@@ -476,6 +479,7 @@ public class Interfaz extends JFrame {
 						BarabasiAlbert model = new BarabasiAlbert(nodosIniBar,
 								nodosNuevBar, textArea);
 						model.execute();
+						setRunButton(false);
 						lblModelo
 								.setText("  Último modelo utilizado: Barabasi");
 					}
@@ -486,5 +490,10 @@ public class Interfaz extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
+	}
+
+	public static void setRunButton(boolean b) {
+		btndoneal.setEnabled(b);
+		btndonebar.setEnabled(b);
 	}
 }

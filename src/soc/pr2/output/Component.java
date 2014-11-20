@@ -6,6 +6,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import soc.pr2.application.Interfaz;
+
 public class Component {
 
 	public Component() {
@@ -54,7 +56,7 @@ public class Component {
 
 		}
 		fileChooser.setVisible(false);
-
+		Interfaz.setRunButton(true);
 		return ruta;
 	}
 
