@@ -50,16 +50,14 @@ public class BarabasiAlbert extends SwingWorker<Void, Integer> {
 	protected Void doInBackground() throws Exception {
 
 		for (int i = 0; i < t; i++) {
-			long addedEdge = 0;
+			long addedEdge = 0, j = 0;
 			Node newNode = new Node();
 
-			while (addedEdge < this.m) {
+			while (addedEdge < m) {
+				int index = (int) (j % listNodes.size());
+				Node neighboringNode = listNodes.get(index);
 
-				for (Node neighboringNode : listNodes) {
-
-					if (newNode.contains(neighboringNode))
-						continue;
-
+				if (!newNode.contains(neighboringNode)) {
 					Random number = new Random();
 					float probability = number.nextFloat();
 
@@ -69,16 +67,13 @@ public class BarabasiAlbert extends SwingWorker<Void, Integer> {
 						neighboringNode.addAdjacentNode(newNode);
 						newNode.increaseDegree();
 						neighboringNode.increaseDegree();
-
 						addedEdge++;
-						if (addedEdge == this.m)
-							break;
 					}
 				}
-				TOTAL_DEGREE += m * 2;
+				j++;
 			}
+			TOTAL_DEGREE += m * 2;
 			listNodes.add(newNode);
-			addedEdge = 0;
 			float progress = (((float) i + 1) / (float) t) * 100;
 			publish((int) progress);
 		}
