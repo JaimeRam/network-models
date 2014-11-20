@@ -325,6 +325,7 @@ public class Interfaz extends JFrame {
 		panel_2.setLayout(new GridLayout(2, 0, 0, 0));
 
 		textArea = new JTextArea();
+		textArea.setEditable(false);
 		textArea.setBorder(BorderFactory.createTitledBorder(null,
 				"Información Del Sistema", TitledBorder.LEFT, TitledBorder.TOP,
 				new Font("times new roman", Font.PLAIN, 19), Color.white));
