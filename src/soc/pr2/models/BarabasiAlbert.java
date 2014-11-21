@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
 
+import soc.pr2.application.Interfaz;
 import soc.pr2.application.Utilities;
 import soc.pr2.data.Node;
 
@@ -15,15 +15,13 @@ public class BarabasiAlbert extends SwingWorker<Void, Integer> {
 	private long m;
 	private long t;
 	private List<Node> listNodes;
-	private JTextArea statusLabel;
 	public static double PROBABILITY = 0;
 	public static long TOTAL_DEGREE = 0;
 
-	public BarabasiAlbert(long m, int t, JTextArea statusLabel) {
+	public BarabasiAlbert(long m, int t) {
 		super();
 		this.m = m;
 		this.t = t;
-		this.statusLabel = statusLabel;
 		listNodes = new ArrayList<Node>();
 		initialize();
 	}
@@ -84,8 +82,7 @@ public class BarabasiAlbert extends SwingWorker<Void, Integer> {
 	}
 
 	protected void process(List<Integer> chunks) {
-		statusLabel.setText(Integer.toString(chunks.get(chunks.size() - 1))
-				+ "% completado");
+		Interfaz.setStatusProgress(chunks.get(chunks.size() - 1));
 	}
 
 	public List<Node> getListNodes() {

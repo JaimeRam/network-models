@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
 
+import soc.pr2.application.Interfaz;
 import soc.pr2.application.Utilities;
 import soc.pr2.data.Node;
 
@@ -16,12 +18,14 @@ public class ErdosRenyi extends SwingWorker<Void, Integer> {
 	private float p;
 	private List<Node> listNodes;
 	private JTextArea statusLabel;
+	private JProgressBar barra;
 
-	public ErdosRenyi(long numberOfNodes, float probability, JTextArea stl) {
+	public ErdosRenyi(long numberOfNodes, float probability, JTextArea stl, JProgressBar progreso ){
 		super();
 		N = numberOfNodes;
 		p = probability;
 		statusLabel = stl;
+		barra=progreso;
 		initialize();
 	}
 
@@ -60,7 +64,7 @@ public class ErdosRenyi extends SwingWorker<Void, Integer> {
 	}
 
 	protected void process(List<Integer> chunks) {
-		statusLabel.setText(Integer.toString(chunks.get(chunks.size() - 1))
-				+ "% completado");
+		Interfaz.setStatusProgress(chunks.get(chunks.size() - 1));
+		
 	}
 }
