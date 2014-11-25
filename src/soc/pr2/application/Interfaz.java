@@ -37,7 +37,8 @@ public class Interfaz extends JFrame {
 	public static JTextArea textArea;
 	public static JButton btndoneal;
 	public static JButton btndonebar;
-    public static JProgressBar barra;
+	public static JProgressBar barra;
+
 	/**
 	 * Create the frame.
 	 */
@@ -353,17 +354,14 @@ public class Interfaz extends JFrame {
 		lblModelo.setBackground(Color.BLACK);
 		lblModelo.setForeground(Color.CYAN);
 		panel_7.add(lblModelo);
-		
-		
+
 		barra = new JProgressBar();
 		panel_7.add(barra);
 		barra.setValue(0);
 		barra.setMaximum(100);
 		barra.setMinimum(0);
 		barra.setStringPainted(true);
-		
-		
-		
+
 		// Accion Botón Sobre Nosotros
 
 		btnnosotros.addActionListener(new ActionListener() {
@@ -434,11 +432,9 @@ public class Interfaz extends JFrame {
 						 * probabilidad, textArea));
 						 */
 
-						ErdosRenyi model = new ErdosRenyi(nodosAl,
-								probabilidad,textArea,barra);
+						ErdosRenyi model = new ErdosRenyi(nodosAl, probabilidad);
 						model.execute();
-						
-						
+
 						setRunButton(false);
 						lblModelo
 								.setText("  Último modelo utilizado: Aleatorio");
@@ -510,11 +506,10 @@ public class Interfaz extends JFrame {
 		btndoneal.setEnabled(b);
 		btndonebar.setEnabled(b);
 	}
-	
+
 	public static void setStatusProgress(int status) {
-		textArea.setText(status+"% completado");
+		textArea.setText(status + "% completado");
 		barra.setValue(status);
 	}
-	
-	
+
 }
