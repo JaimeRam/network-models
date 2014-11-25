@@ -88,14 +88,25 @@ public class Interfaz extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(
 						btnexportar,
-						"Información a cerca de la aplicación\n" + "\n"
-								+ "¿Qué podemos realizar con la aplicación?\n"
-								+ "\n" + "Paneles de la Aplicación\n" + "\n"
+								"== ¿Qué podemos realizar con la aplicación? ==\n\n"
+								+ "Podremos generar redes en formato csv\n\n" + "== Paneles de la Aplicación ==============\n" + "\n"
 								+ "Panel de acciones inmediatas:\n" + "\n"
+										+ "		1. Ayuda de la aplicación.\n"
+										+ "		2. Cierre rápido de la aplicación.\n"
+										+ "		3. Redirección a sitios externos de interés.\n"
+										+ "\n"
 								+ " Panel Modelo Aleatorio:\n" + "\n"
+										+ "		1. Ayuda de cómo funciona el modelo.\n"
+										+ "		2. Ejecutar el modelo Aleatorio.\n\n"
 								+ "Panel Modelo Barabasi:\n" + "\n"
+										+ "		1. Ayuda de cómo funciona el modelo.\n"
+										+ "		2. Ejecutar el modelo de Barabasi.\n\n"
 								+ "Panel Información del sistema:\n" + "\n"
-								+ "Panel de último estado\n",
+										+ "		1. Mensajes de información de la propia aplicación.\n\n"
+								+ "Panel de estado\n\n"
+										+ "		1. Licencia de la aplicación.\n"
+										+ "		2. Último modelo utilizado.\n"
+										+ "		3. Barra de Progreso del modelo ejecutado.\n",
 						"Generador De Redes",
 						JOptionPane.OK_CANCEL_OPTION,
 						new ImageIcon(getClass().getResource(
@@ -210,13 +221,21 @@ public class Interfaz extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(btninfoal, "* Modelo:\n" + "\n"
-						+ "El modelo Barabasi consiste en.... p\n" + "\n"
-						+ "* Parámetros:\n" + "\n"
-						+ "N:Número de nodos iniciales" + "\n"
-						+ "t: nodos a insertar\n" + "\n"
-						+ "* Como funciona el panel:\n" + "\n"
-						+ "bla bla bla bla bla bla bla bla bla bla bla bla\n"
+				JOptionPane.showMessageDialog(btninfoal,"== Modelo ==\n"
+						+ "\n"
+						+ " Una red aleatoria es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso\n"
+						+ " completamente aleatorio.\n"
+						+ "\n"
+						+ " De manera más matemática podemos decir que una red aleatoria es una red que tiene N nodos donde cada nodo puede\n"
+						+ " puede estar conectado con otro con una probabilidad p.\n"
+						+ "\n"
+						+ "== Cómo funciona el panel ==\n"
+						+ "\n"
+						+ "  1. Debemos de introducir un número de nodos iniciales en el primer campo (debe de ser mayor que 1.\n"
+						+ "  2. Acto seguido introducimos la probabilidad  en el segundo campo (debe de ser mayor que 0 y menor que 1).\n"
+						+ "  3. Una vez realizado esto pulsamos en el botón de ejecutar.\n"
+						+ "  4. Podremos observar como va el progreso de nuestro proceso en la barra de progreso inferior.\n"
+						+ "  5. Por último debemos guardar nuestro archivo en formato .csv donde nosotros deseemos."
 						+ "\n\n", "Modelo Barabasi",
 						JOptionPane.OK_CANCEL_OPTION, new ImageIcon(getClass()
 								.getResource("/soc/pr2/media/Erdos.png")));
@@ -298,19 +317,22 @@ public class Interfaz extends JFrame {
 				JOptionPane
 						.showMessageDialog(
 								btninfobar,
-								"* Modelo:\n"
+								"== Modelo ==\n"
 										+ "\n"
-										+ "El modelo Barabasi consiste en.... p\n"
+										+ " Partimos de una distribución inicial aleatoria de nodos y todos los nodos tienen al menos un enlace.\n"
 										+ "\n"
-										+ "* Parámetros:\n"
+										+ " La red evoluciona añadiendo en cada tiempo determinado un nuevo nodo a la red con un número de enlaces\n"
+										+ " menor al de los iniciales y se unirá al mismo número de nodos que enlaces tiene.\n"
 										+ "\n"
-										+ "N:Número de nodos iniciales"
+										+ " La probabilidad de establecer un enlace con uno de los nodos iniciales dependerá del grado del propio nodo inicial.\n"
 										+ "\n"
-										+ "t: nodos a insertar\n"
+										+ "== Cómo funciona el panel ==\n"
 										+ "\n"
-										+ "* Como funciona el panel:\n"
-										+ "\n"
-										+ "bla bla bla bla bla bla bla bla bla bla bla bla\n"
+										+ "  1. Debemos de introducir un número de nodos iniciales en el primer campo.\n"
+										+ "  2. Acto seguido introducimos un número de nodos a añadir en el segundo campo.\n"
+										+ "  3. Una vez realizado esto pulsamos en el botón de ejecutar.\n"
+										+ "  4. Podremos observar como va el progreso de nuestro proceso en la barra de progreso inferior.\n"
+										+ "  5. Por último debemos guardar nuestro archivo en formato .csv donde nosotros deseemos."
 										+ "\n\n",
 								"Modelo Barabasi",
 								JOptionPane.OK_CANCEL_OPTION,
@@ -350,7 +372,7 @@ public class Interfaz extends JFrame {
 		btnnosotros.setForeground(Color.WHITE);
 		panel_7.add(btnnosotros);
 
-		final JLabel lblModelo = new JLabel("  Sin previo Modelo generado");
+		final JLabel lblModelo = new JLabel("  Sin previo Modelo");
 		lblModelo.setBackground(Color.BLACK);
 		lblModelo.setForeground(Color.CYAN);
 		panel_7.add(lblModelo);
@@ -426,7 +448,7 @@ public class Interfaz extends JFrame {
 								new ImageIcon(getClass().getResource(
 										"/soc/pr2/media/warning.gif")));
 					} else {
-						textArea.setText("Generando red mediante modelo aleatorio según los datos introducidos...");
+						textArea.setText("Ha ejecutado la aplicación usando el modelo aleatorio");
 						/*
 						 * SwingUtilities.invokeLater(new ErdosRenyi(nodosAl,
 						 * probabilidad, textArea));
@@ -437,7 +459,7 @@ public class Interfaz extends JFrame {
 
 						setRunButton(false);
 						lblModelo
-								.setText("  Último modelo utilizado: Aleatorio");
+								.setText(" Utilizado: Aleatorio");
 
 					}
 				}
@@ -485,13 +507,13 @@ public class Interfaz extends JFrame {
 								new ImageIcon(getClass().getResource(
 										"/soc/pr2/media/warning.gif")));
 					} else {
-						textArea.setText("Generando red mediante modelo Barabasi");
+						textArea.setText("Ha ejecutado el programa mediante la opción modelo Barabasi");
 						BarabasiAlbert model = new BarabasiAlbert(nodosIniBar,
 								nodosNuevBar);
 						model.execute();
 						setRunButton(false);
 						lblModelo
-								.setText("  Último modelo utilizado: Barabasi");
+								.setText(" Utilizado: Barabasi");
 					}
 				}
 			}
@@ -508,8 +530,10 @@ public class Interfaz extends JFrame {
 	}
 
 	public static void setStatusProgress(int status) {
-		textArea.setText(status + "% completado");
 		barra.setValue(status);
+		if (status ==100)
+			textArea.setText(" Red Generada con éxito");
+		
 	}
 
 }
