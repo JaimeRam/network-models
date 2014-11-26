@@ -86,31 +86,38 @@ public class Interfaz extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(
-						btnexportar,
+				JOptionPane
+						.showMessageDialog(
+								btnexportar,
 								"== ¿Qué podemos realizar con la aplicación? ==\n\n"
-								+ "Podremos generar redes en formato csv\n\n" + "== Paneles de la Aplicación ==============\n" + "\n"
-								+ "Panel de acciones inmediatas:\n" + "\n"
+										+ "Podremos generar redes en formato csv\n\n"
+										+ "== Paneles de la Aplicación ==============\n"
+										+ "\n"
+										+ "Panel de acciones inmediatas:\n"
+										+ "\n"
 										+ "		1. Ayuda de la aplicación.\n"
 										+ "		2. Cierre rápido de la aplicación.\n"
 										+ "		3. Redirección a sitios externos de interés.\n"
 										+ "\n"
-								+ " Panel Modelo Aleatorio:\n" + "\n"
+										+ " Panel Modelo Aleatorio:\n"
+										+ "\n"
 										+ "		1. Ayuda de cómo funciona el modelo.\n"
 										+ "		2. Ejecutar el modelo Aleatorio.\n\n"
-								+ "Panel Modelo Barabasi:\n" + "\n"
+										+ "Panel Modelo Barabasi:\n"
+										+ "\n"
 										+ "		1. Ayuda de cómo funciona el modelo.\n"
 										+ "		2. Ejecutar el modelo de Barabasi.\n\n"
-								+ "Panel Información del sistema:\n" + "\n"
+										+ "Panel Información del sistema:\n"
+										+ "\n"
 										+ "		1. Mensajes de información de la propia aplicación.\n\n"
-								+ "Panel de estado\n\n"
+										+ "Panel de estado\n\n"
 										+ "		1. Licencia de la aplicación.\n"
 										+ "		2. Último modelo utilizado.\n"
 										+ "		3. Barra de Progreso del modelo ejecutado.\n",
-						"Generador De Redes",
-						JOptionPane.OK_CANCEL_OPTION,
-						new ImageIcon(getClass().getResource(
-								"/soc/pr2/media/captura.png")));
+								"Generador De Redes",
+								JOptionPane.OK_CANCEL_OPTION,
+								new ImageIcon(getClass().getResource(
+										"/soc/pr2/media/captura.png")));
 
 			}
 		});
@@ -221,24 +228,29 @@ public class Interfaz extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(btninfoal,"== Modelo ==\n"
-						+ "\n"
-						+ " Una red aleatoria es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso\n"
-						+ " completamente aleatorio.\n"
-						+ "\n"
-						+ " De manera más matemática podemos decir que una red aleatoria es una red que tiene N nodos donde cada nodo puede\n"
-						+ " puede estar conectado con otro con una probabilidad p.\n"
-						+ "\n"
-						+ "== Cómo funciona el panel ==\n"
-						+ "\n"
-						+ "  1. Debemos de introducir un número de nodos iniciales en el primer campo (debe de ser mayor que 1.\n"
-						+ "  2. Acto seguido introducimos la probabilidad  en el segundo campo (debe de ser mayor que 0 y menor que 1).\n"
-						+ "  3. Una vez realizado esto pulsamos en el botón de ejecutar.\n"
-						+ "  4. Podremos observar como va el progreso de nuestro proceso en la barra de progreso inferior.\n"
-						+ "  5. Por último debemos guardar nuestro archivo en formato .csv donde nosotros deseemos."
-						+ "\n\n", "Modelo Barabasi",
-						JOptionPane.OK_CANCEL_OPTION, new ImageIcon(getClass()
-								.getResource("/soc/pr2/media/Erdos.png")));
+				JOptionPane
+						.showMessageDialog(
+								btninfoal,
+								"== Modelo ==\n"
+										+ "\n"
+										+ " Una red aleatoria es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso\n"
+										+ " completamente aleatorio.\n"
+										+ "\n"
+										+ " De manera más matemática podemos decir que una red aleatoria es una red que tiene N nodos donde cada nodo puede\n"
+										+ " puede estar conectado con otro con una probabilidad p.\n"
+										+ "\n"
+										+ "== Cómo funciona el panel ==\n"
+										+ "\n"
+										+ "  1. Debemos de introducir un número de nodos iniciales en el primer campo (debe de ser mayor que 1.\n"
+										+ "  2. Acto seguido introducimos la probabilidad  en el segundo campo (debe de ser mayor que 0 y menor que 1).\n"
+										+ "  3. Una vez realizado esto pulsamos en el botón de ejecutar.\n"
+										+ "  4. Podremos observar como va el progreso de nuestro proceso en la barra de progreso inferior.\n"
+										+ "  5. Por último debemos guardar nuestro archivo en formato .csv donde nosotros deseemos."
+										+ "\n\n",
+								"Modelo Barabasi",
+								JOptionPane.OK_CANCEL_OPTION,
+								new ImageIcon(getClass().getResource(
+										"/soc/pr2/media/Erdos.png")));
 
 			}
 		});
@@ -421,6 +433,15 @@ public class Interfaz extends JFrame {
 							JOptionPane.OK_CANCEL_OPTION,
 							new ImageIcon(getClass().getResource(
 									"/soc/pr2/media/warning.gif")));
+				else if (textField_1.getText().contains(","))
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"El formato decimal sólo se acepta por punto ('.')",
+									"Mensaje Informativo",
+									JOptionPane.OK_CANCEL_OPTION,
+									new ImageIcon(getClass().getResource(
+											"/soc/pr2/media/warning.gif")));
 				else {
 					long nodosAl = (long) Long.parseLong(textField.getText());
 					float probabilidad = (float) Float.parseFloat(textField_1
@@ -458,8 +479,7 @@ public class Interfaz extends JFrame {
 						model.execute();
 
 						setRunButton(false);
-						lblModelo
-								.setText(" Utilizado: Aleatorio");
+						lblModelo.setText(" Utilizado: Aleatorio");
 
 					}
 				}
@@ -512,8 +532,7 @@ public class Interfaz extends JFrame {
 								nodosNuevBar);
 						model.execute();
 						setRunButton(false);
-						lblModelo
-								.setText(" Utilizado: Barabasi");
+						lblModelo.setText(" Utilizado: Barabasi");
 					}
 				}
 			}
@@ -531,9 +550,9 @@ public class Interfaz extends JFrame {
 
 	public static void setStatusProgress(int status) {
 		barra.setValue(status);
-		if (status ==100)
+		if (status == 100)
 			textArea.setText(" Red Generada con éxito");
-		
+
 	}
 
 }
